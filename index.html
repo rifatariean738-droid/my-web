@@ -1,0 +1,84 @@
+<style>
+    :root {
+        --preview-width: 210mm;
+        --preview-height: 297mm;
+        --panel-width: 350px;
+    }
+
+    body {
+        font-family: 'Times New Roman', Times, serif;
+        background-color: #f0f2f5;
+        margin: 0;
+        display: flex;
+        flex-direction: row; /* Default side-by-side */
+    }
+
+    /* Input Panel - Now Responsive */
+    .input-panel {
+        width: var(--panel-width);
+        height: 100vh;
+        background: #ffffff;
+        padding: 20px;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        overflow-y: auto;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        flex-shrink: 0;
+    }
+
+    /* Preview Area - Now Responsive */
+    .preview-area {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        padding: 40px 20px;
+        background: #e0e0e0;
+        overflow-x: auto; /* Allows horizontal scroll on mobile if page is too wide */
+    }
+
+    /* A4 Page Scaling for Small Screens */
+    .a4-page {
+        width: var(--preview-width);
+        height: var(--preview-height);
+        background: white;
+        padding: 20mm;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        position: relative;
+        box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        /* Critical for Mobile: */
+        transform-origin: top center; 
+    }
+
+    /* --- MOBILE BREAKPOINT --- */
+    @media (max-width: 850px) {
+        body {
+            flex-direction: column; /* Stacked: Input on top, Preview below */
+        }
+
+        .input-panel {
+            width: 100%;
+            height: auto;
+            max-height: 50vh; /* Don't let inputs take the whole screen */
+            position: relative;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .preview-area {
+            padding: 20px 10px;
+        }
+
+        /* Scale down the A4 preview so it fits phone screens */
+        .a4-page {
+            transform: scale(0.45); /* Scales the visual, not the actual dimensions */
+            margin-top: -250px; /* Adjusts for the empty space left by scaling */
+            margin-bottom: -250px;
+        }
+    }
+
+    /* ... rest of your existing CSS (course-code, student-info, etc.) ... */
+</style>
